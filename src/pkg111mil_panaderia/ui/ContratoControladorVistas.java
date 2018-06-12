@@ -15,5 +15,6 @@ public interface ContratoControladorVistas {
     public void lanzarVistaCantidad(TipoProducto productoSeleccionado); 
     public void launchVistaCobranza();    
     public void lanzarDetallePedido();
+    public void lanzarSelector();
     
 }

@@ -243,6 +243,7 @@ public class VistaDP implements ContratoVistaDP {
             else {
                 System.out.println("Todos los pedidos fueron cancelados!");
             }
+            controlador.launchVistaCobranza();
         }
         });
         
