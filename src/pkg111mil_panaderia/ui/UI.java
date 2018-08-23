@@ -4,36 +4,37 @@
  * and open the template in the editor.
  */
 package pkg111mil_panaderia.ui;
+import detalledepedido.ContratoVistaDP;
 import detalledepedido.VistaDP;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import pkg111mil_panaderia.cantidad.ContratoVistaCantidad;
 import pkg111mil_panaderia.modelo.TipoProducto;
 import pkg111mil_panaderia.seleccionar.VistaSeleccionProducto;
 import pkg111mil_panaderia.cantidad.VistaCantidad;
+import pkg111mil_panaderia.cobrar.ContratoVistaCobranza;
 import pkg111mil_panaderia.cobrar.VistaCobranza;
+import pkg111mil_panaderia.seleccionar.ContratoVistaSeleccionProducto;
 
 /**
  *
  * @author steve-urbit
  */
 public class UI extends Application implements ContratoControladorVistas{
-    private Stage mainStage;
-    private VistaCobranza vistaConbranza = new VistaCobranza();
-    private VistaCantidad vista = null;
-    private VistaDP vistaDP = null;
+    private Stage escenarioPrincipal;
+    private ContratoVistaSeleccionProducto vistaSelector;
+    private ContratoVistaCobranza vistaCobranza;
+    private ContratoVistaCantidad vistaCantidad;
+    private ContratoVistaDP vistaDP;
+    
+   
     
     @Override
     public void start(Stage primaryStage) {
-       VistaSeleccionProducto vista1 = new VistaSeleccionProducto(this);
-        this.mainStage = primaryStage;
-        this.launchVistaCobranza();
-        //vista = new VistaCantidad(this);
-       //Stage cantidadStage = new Stage();
-        primaryStage.setScene(vista.getScene());
-       // primaryStage.show();
-        //Lanzar primera vista
-        this.lanzarDetallePedido();
-        this.mainStage.show();
+       
+        this.escenarioPrincipal = primaryStage;
+        this.lanzarSelector();
+        this.escenarioPrincipal.show();
     }
 
     /**
@@ -47,15 +48,18 @@ public class UI extends Application implements ContratoControladorVistas{
     
     @Override
     public void launchVistaCobranza() {
-        if(this.vistaConbranza == null){
-            this.vistaConbranza = new VistaCobranza();
+        if(this.vistaCobranza == null){
+            this.vistaCobranza = new VistaCobranza();
         }
-        this.mainStage.setScene(this.vistaConbranza.getScene());
+        this.escenarioPrincipal.setScene(this.vistaCobranza.getScene());
     }
 
     @Override
     public void lanzarVistaCantidad(TipoProducto productoSeleccionado) {
-        
+        if(this.vistaCantidad == null){
+            this.vistaCantidad = new VistaCantidad(this, productoSeleccionado);
+        }
+        this.escenarioPrincipal.setScene(this.vistaCantidad.getScene());
     }
 
     @Override
@@ -63,7 +67,15 @@ public class UI extends Application implements ContratoControladorVistas{
         if(this.vistaDP == null){
             this.vistaDP = new VistaDP(this);
         }
-        this.mainStage.setScene(this.vistaDP.getScene());
+        this.escenarioPrincipal.setScene(this.vistaDP.getScene());
+    }
+
+    @Override
+    public void lanzarSelector() {
+        if(this.vistaSelector == null){
+            this.vistaSelector = new VistaSeleccionProducto(this);
+        }
+        this.escenarioPrincipal.setScene(this.vistaSelector.obtenerEscena());
     }
     
 }

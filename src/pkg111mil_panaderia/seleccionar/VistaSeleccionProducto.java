@@ -24,6 +24,8 @@ import javafx.scene.layout.BackgroundSize;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane; 
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import pkg111mil_panaderia.modelo.TipoProducto;
@@ -49,8 +51,10 @@ public class VistaSeleccionProducto implements ContratoVistaSeleccionProducto{
       List<TipoProducto> productos = this.presentador.dameLosProductos();
       //Creating an array of Buttons 
        List<Button> botonesProductos = new ArrayList<>();
+       
        for(TipoProducto prod : productos){
            Button boton = new Button(prod.getNombre());
+           
            boton.setOnAction(new EventHandler<ActionEvent>() {
 
                @Override
@@ -62,53 +66,48 @@ public class VistaSeleccionProducto implements ContratoVistaSeleccionProducto{
         }
        
        for (int i=0;i<botonesProductos.size();i++){
-           System.out.println(getClass().getResource("criollitos.jpg"));
-        Image imagen = new Image( getClass().getResource("criollitos.jpg").toExternalForm());
-        BackgroundImage backgroundImage = new BackgroundImage( imagen , 
-                BackgroundRepeat.NO_REPEAT, 
-                BackgroundRepeat.NO_REPEAT, 
-                BackgroundPosition.DEFAULT, 
-                BackgroundSize.DEFAULT);
-        Background background = new Background(backgroundImage);
-        
        
         //botonesProductos.get(0).setBackground(background);
-        botonesProductos.get(i).setStyle("-fx-background-image: url('criollitos.jpg')");
-        botonesProductos.get(i).setPrefSize(200,200);
-       }
-       //Creating a Tile Pane 
-           Stage stage=new Stage();
-
-      TilePane tilePane = new TilePane(30.0,30.0);   
-      tilePane.setPadding(new Insets(25, 25, 25, 25));
-      
-      //Setting the orientation for the Tile Pane 
-      tilePane.setOrientation(Orientation.HORIZONTAL); 
+        botonesProductos.get(0).setStyle("-fx-background-image: url('criollitos.jpg')");
+        botonesProductos.get(1).setStyle("-fx-background-image: url('pastaFrola.jpg')");
+        botonesProductos.get(2).setStyle("-fx-background-image: url('panFrances.jpg')");
+        botonesProductos.get(3).setStyle("-fx-background-image: url('facturas.jpg')");
+        botonesProductos.get(i).setPrefSize(300,200);
+        
+        }
+       botonesProductos.get(0).setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+       botonesProductos.get(1).setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+       botonesProductos.get(2).setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+       botonesProductos.get(3).setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
        
-      //Setting the alignment for the Tile Pane 
-      tilePane.setTileAlignment(Pos.CENTER_LEFT); 
-       
-      //Setting the preferred columns for the Tile Pane 
-      tilePane.setPrefRows(4);  
+        TilePane tilePane = new TilePane(30.0,30.0);   
+        tilePane.setPadding(new Insets(25, 25, 25, 25));
       
-      //Retrieving the observable list of the Tile Pane 
-      ObservableList list = tilePane.getChildren(); 
+         //Setting the orientation for the Tile Pane 
+         tilePane.setOrientation(Orientation.HORIZONTAL); 
        
-      //Adding the array of buttons to the pane 
-      list.addAll(botonesProductos);
-	  
-      //Creating a scene object 
-      Scene scene = new Scene(tilePane);  
+          //Setting the alignment for the Tile Pane 
+          tilePane.setTileAlignment(Pos.CENTER_LEFT); 
+       
+         //Setting the preferred columns for the Tile Pane 
+         tilePane.setPrefRows(4);  
       
-      //Setting title to the Stage 
-      stage.setTitle("Tile Pane Example"); 
+          //Retrieving the observable list of the Tile Pane 
+         ObservableList list = tilePane.getChildren(); 
+       
+         //Adding the array of buttons to the pane 
+         list.addAll(botonesProductos);
+            
          
-      //Adding scene to the stage 
-      stage.setScene(scene); 
-         
-      //Displaying the contents of the stage 
-      stage.show(); 
+          //Creating a scene object 
+          this.escena = new Scene(tilePane);  
+   
    } 
+
+    @Override
+    public Scene obtenerEscena() {
+        return this.escena;
+    }
     
 
    

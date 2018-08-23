@@ -225,8 +225,7 @@ public class VistaCantidad implements ContratoVistaCantidad{
         ok.setOnAction((ActionEvent event) -> {
            //presentador.crearDetalle(cantidadIngresada);
            //presentador.calcularMontoTotal(cantidadIngresada);
-            System.out.println(presentador.crearDetalle(cantidadIngresada));
-            System.out.println(presentador.calcularMontoTotal(cantidadIngresada));
+            controlador.lanzarDetallePedido();
         });
        
         this.textoCantidad.setStyle("-fx-border-color: #000000");
