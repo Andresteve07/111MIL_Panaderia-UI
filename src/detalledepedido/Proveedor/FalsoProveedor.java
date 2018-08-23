@@ -14,7 +14,7 @@ import pkg111mil_panaderia.modelo.UnidadMedida;
  *
  * @author PC
  */
-public class FalsoProveedor implements ContratoFalsoProveedor{
+public class FalsoProveedor implements ContratoProveedorDetalles{
 
     private ArrayList<DetallePedido> listaDetalles;
     private ArrayList<String> listaURLS;

@@ -5,8 +5,9 @@
  */
 package detalledepedido;
 
-import detalledepedido.Proveedor.ContratoFalsoProveedor;
+import detalledepedido.Proveedor.ContratoProveedorDetalles;
 import detalledepedido.Proveedor.FalsoProveedor;
+import detalledepedido.Proveedor.VerdaderoProveedor;
 import java.util.ArrayList;
 import pkg111mil_panaderia.modelo.DetallePedido;
 
@@ -16,11 +17,11 @@ import pkg111mil_panaderia.modelo.DetallePedido;
  */
 public class PresentadorDP implements ContratoPresentadorDP {
      private ContratoVistaDP vista;
-     private ContratoFalsoProveedor falsoProveedor;
+     private ContratoProveedorDetalles proveedor;
     
     public PresentadorDP(ContratoVistaDP vista) {
         this.vista = vista;
-        this.falsoProveedor = new FalsoProveedor();
+        this.proveedor = new VerdaderoProveedor();
     }
 
     @Override
@@ -30,11 +31,11 @@ public class PresentadorDP implements ContratoPresentadorDP {
 
     @Override
     public ArrayList<DetallePedido> getDetallePedido() {
-        return (this.falsoProveedor.getDetallesPedido());
+        return (this.proveedor.getDetallesPedido());
     }
     
     @Override
     public ArrayList<String> getURLS() {
-        return this.falsoProveedor.getURLS();
+        return this.proveedor.getURLS();
     }
 }
